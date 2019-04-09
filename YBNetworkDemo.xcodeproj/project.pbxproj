@@ -1,0 +1,488 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		23C91905225C4039006D7572 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C91904225C4039006D7572 /* AppDelegate.m */; };
+		23C91908225C4039006D7572 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C91907225C4039006D7572 /* ViewController.m */; };
+		23C9190B225C4039006D7572 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23C91909225C4039006D7572 /* Main.storyboard */; };
+		23C9190D225C403C006D7572 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23C9190C225C403C006D7572 /* Assets.xcassets */; };
+		23C91910225C403C006D7572 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23C9190E225C403C006D7572 /* LaunchScreen.storyboard */; };
+		23C91913225C403C006D7572 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C91912225C403C006D7572 /* main.m */; };
+		23C91929225C4204006D7572 /* YBBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9191F225C4204006D7572 /* YBBaseRequest.m */; };
+		23C9192A225C4204006D7572 /* YBNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C91924225C4204006D7572 /* YBNetworkManager.m */; };
+		23C9192B225C4204006D7572 /* YBNetworkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C91927225C4204006D7572 /* YBNetworkResponse.m */; };
+		23C91930225C43E7006D7572 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9192F225C43E7006D7572 /* TestViewController.m */; };
+		23C91933225C48A1006D7572 /* YBNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C91932225C48A1006D7572 /* YBNetworkCache.m */; };
+		23C9193D225C4C6F006D7572 /* DefaultRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9193C225C4C6F006D7572 /* DefaultRequest.m */; };
+		23C91940225C4C7D006D7572 /* OtherRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9193F225C4C7D006D7572 /* OtherRequest.m */; };
+		B2C2CAD4C03F9EFE0F2EE67B /* libPods-YBNetworkDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A893DB8000A939C5DA5801 /* libPods-YBNetworkDemo.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		23C91900225C4039006D7572 /* YBNetworkDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YBNetworkDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		23C91903225C4039006D7572 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		23C91904225C4039006D7572 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		23C91906225C4039006D7572 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		23C91907225C4039006D7572 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		23C9190A225C4039006D7572 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		23C9190C225C403C006D7572 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		23C9190F225C403C006D7572 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		23C91911225C403C006D7572 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23C91912225C403C006D7572 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		23C9191B225C4204006D7572 /* YBNetworkCache+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YBNetworkCache+Internal.h"; sourceTree = "<group>"; };
+		23C9191C225C4204006D7572 /* YBNetworkCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBNetworkCache.h; sourceTree = "<group>"; };
+		23C9191F225C4204006D7572 /* YBBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaseRequest.m; sourceTree = "<group>"; };
+		23C91920225C4204006D7572 /* YBNetworkDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBNetworkDefine.h; sourceTree = "<group>"; };
+		23C91922225C4204006D7572 /* YBBaseRequest+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YBBaseRequest+Internal.h"; sourceTree = "<group>"; };
+		23C91923225C4204006D7572 /* YBNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBNetworkManager.h; sourceTree = "<group>"; };
+		23C91924225C4204006D7572 /* YBNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBNetworkManager.m; sourceTree = "<group>"; };
+		23C91926225C4204006D7572 /* YBNetworkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBNetworkResponse.h; sourceTree = "<group>"; };
+		23C91927225C4204006D7572 /* YBNetworkResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBNetworkResponse.m; sourceTree = "<group>"; };
+		23C9192E225C43E7006D7572 /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		23C9192F225C43E7006D7572 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		23C91931225C47FE006D7572 /* YBBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseRequest.h; sourceTree = "<group>"; };
+		23C91932225C48A1006D7572 /* YBNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBNetworkCache.m; sourceTree = "<group>"; };
+		23C9193B225C4C6F006D7572 /* DefaultRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultRequest.h; sourceTree = "<group>"; };
+		23C9193C225C4C6F006D7572 /* DefaultRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultRequest.m; sourceTree = "<group>"; };
+		23C9193E225C4C7D006D7572 /* OtherRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherRequest.h; sourceTree = "<group>"; };
+		23C9193F225C4C7D006D7572 /* OtherRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherRequest.m; sourceTree = "<group>"; };
+		4C5D38D42F9FA799AD4ABC18 /* Pods-YBNetworkDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBNetworkDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-YBNetworkDemo/Pods-YBNetworkDemo.release.xcconfig"; sourceTree = "<group>"; };
+		56A893DB8000A939C5DA5801 /* libPods-YBNetworkDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YBNetworkDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF27588BBC9F85C4C332F206 /* Pods-YBNetworkDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBNetworkDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YBNetworkDemo/Pods-YBNetworkDemo.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		23C918FD225C4039006D7572 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2C2CAD4C03F9EFE0F2EE67B /* libPods-YBNetworkDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		16A98EF6C0A79851EBC56EB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56A893DB8000A939C5DA5801 /* libPods-YBNetworkDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		23C918F7225C4039006D7572 = {
+			isa = PBXGroup;
+			children = (
+				23C91902225C4039006D7572 /* YBNetworkDemo */,
+				23C91901225C4039006D7572 /* Products */,
+				7486B2C4FC21018069E28225 /* Pods */,
+				16A98EF6C0A79851EBC56EB0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		23C91901225C4039006D7572 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				23C91900225C4039006D7572 /* YBNetworkDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		23C91902225C4039006D7572 /* YBNetworkDemo */ = {
+			isa = PBXGroup;
+			children = (
+				23C91919225C4204006D7572 /* YBNetwork */,
+				23C9192C225C428A006D7572 /* TestCase */,
+				23C91903225C4039006D7572 /* AppDelegate.h */,
+				23C91904225C4039006D7572 /* AppDelegate.m */,
+				23C91906225C4039006D7572 /* ViewController.h */,
+				23C91907225C4039006D7572 /* ViewController.m */,
+				23C91909225C4039006D7572 /* Main.storyboard */,
+				23C9190C225C403C006D7572 /* Assets.xcassets */,
+				23C9190E225C403C006D7572 /* LaunchScreen.storyboard */,
+				23C91911225C403C006D7572 /* Info.plist */,
+				23C91912225C403C006D7572 /* main.m */,
+			);
+			path = YBNetworkDemo;
+			sourceTree = "<group>";
+		};
+		23C91919225C4204006D7572 /* YBNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				23C9191A225C4204006D7572 /* Cache */,
+				23C91921225C4204006D7572 /* Manger */,
+				23C91925225C4204006D7572 /* Response */,
+				23C91920225C4204006D7572 /* YBNetworkDefine.h */,
+				23C91931225C47FE006D7572 /* YBBaseRequest.h */,
+				23C9191F225C4204006D7572 /* YBBaseRequest.m */,
+			);
+			path = YBNetwork;
+			sourceTree = SOURCE_ROOT;
+		};
+		23C9191A225C4204006D7572 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				23C91932225C48A1006D7572 /* YBNetworkCache.m */,
+				23C9191B225C4204006D7572 /* YBNetworkCache+Internal.h */,
+				23C9191C225C4204006D7572 /* YBNetworkCache.h */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		23C91921225C4204006D7572 /* Manger */ = {
+			isa = PBXGroup;
+			children = (
+				23C91922225C4204006D7572 /* YBBaseRequest+Internal.h */,
+				23C91923225C4204006D7572 /* YBNetworkManager.h */,
+				23C91924225C4204006D7572 /* YBNetworkManager.m */,
+			);
+			path = Manger;
+			sourceTree = "<group>";
+		};
+		23C91925225C4204006D7572 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				23C91926225C4204006D7572 /* YBNetworkResponse.h */,
+				23C91927225C4204006D7572 /* YBNetworkResponse.m */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		23C9192C225C428A006D7572 /* TestCase */ = {
+			isa = PBXGroup;
+			children = (
+				23C91934225C4BCD006D7572 /* APITeams */,
+				23C9192E225C43E7006D7572 /* TestViewController.h */,
+				23C9192F225C43E7006D7572 /* TestViewController.m */,
+			);
+			path = TestCase;
+			sourceTree = "<group>";
+		};
+		23C91934225C4BCD006D7572 /* APITeams */ = {
+			isa = PBXGroup;
+			children = (
+				23C9193B225C4C6F006D7572 /* DefaultRequest.h */,
+				23C9193C225C4C6F006D7572 /* DefaultRequest.m */,
+				23C9193E225C4C7D006D7572 /* OtherRequest.h */,
+				23C9193F225C4C7D006D7572 /* OtherRequest.m */,
+			);
+			path = APITeams;
+			sourceTree = "<group>";
+		};
+		7486B2C4FC21018069E28225 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AF27588BBC9F85C4C332F206 /* Pods-YBNetworkDemo.debug.xcconfig */,
+				4C5D38D42F9FA799AD4ABC18 /* Pods-YBNetworkDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		23C918FF225C4039006D7572 /* YBNetworkDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23C91916225C403C006D7572 /* Build configuration list for PBXNativeTarget "YBNetworkDemo" */;
+			buildPhases = (
+				B62F1CC726DAD7C8D9E7C1ED /* [CP] Check Pods Manifest.lock */,
+				23C918FC225C4039006D7572 /* Sources */,
+				23C918FD225C4039006D7572 /* Frameworks */,
+				23C918FE225C4039006D7572 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YBNetworkDemo;
+			productName = YBNetworkDemo;
+			productReference = 23C91900225C4039006D7572 /* YBNetworkDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		23C918F8225C4039006D7572 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "杨波";
+				TargetAttributes = {
+					23C918FF225C4039006D7572 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+				};
+			};
+			buildConfigurationList = 23C918FB225C4039006D7572 /* Build configuration list for PBXProject "YBNetworkDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 23C918F7225C4039006D7572;
+			productRefGroup = 23C91901225C4039006D7572 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				23C918FF225C4039006D7572 /* YBNetworkDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		23C918FE225C4039006D7572 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23C91910225C403C006D7572 /* LaunchScreen.storyboard in Resources */,
+				23C9190D225C403C006D7572 /* Assets.xcassets in Resources */,
+				23C9190B225C4039006D7572 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B62F1CC726DAD7C8D9E7C1ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YBNetworkDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		23C918FC225C4039006D7572 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23C9192A225C4204006D7572 /* YBNetworkManager.m in Sources */,
+				23C9193D225C4C6F006D7572 /* DefaultRequest.m in Sources */,
+				23C91908225C4039006D7572 /* ViewController.m in Sources */,
+				23C91913225C403C006D7572 /* main.m in Sources */,
+				23C91905225C4039006D7572 /* AppDelegate.m in Sources */,
+				23C91933225C48A1006D7572 /* YBNetworkCache.m in Sources */,
+				23C91940225C4C7D006D7572 /* OtherRequest.m in Sources */,
+				23C91929225C4204006D7572 /* YBBaseRequest.m in Sources */,
+				23C91930225C43E7006D7572 /* TestViewController.m in Sources */,
+				23C9192B225C4204006D7572 /* YBNetworkResponse.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		23C91909225C4039006D7572 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23C9190A225C4039006D7572 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		23C9190E225C403C006D7572 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23C9190F225C403C006D7572 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		23C91914225C403C006D7572 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		23C91915225C403C006D7572 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		23C91917225C403C006D7572 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF27588BBC9F85C4C332F206 /* Pods-YBNetworkDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UU8H9EQ986;
+				INFOPLIST_FILE = YBNetworkDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yangbo.YBNetworkDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		23C91918225C403C006D7572 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C5D38D42F9FA799AD4ABC18 /* Pods-YBNetworkDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UU8H9EQ986;
+				INFOPLIST_FILE = YBNetworkDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yangbo.YBNetworkDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		23C918FB225C4039006D7572 /* Build configuration list for PBXProject "YBNetworkDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23C91914225C403C006D7572 /* Debug */,
+				23C91915225C403C006D7572 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23C91916225C403C006D7572 /* Build configuration list for PBXNativeTarget "YBNetworkDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23C91917225C403C006D7572 /* Debug */,
+				23C91918225C403C006D7572 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 23C918F8225C4039006D7572 /* Project object */;
+}
