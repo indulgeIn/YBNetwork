@@ -38,7 +38,7 @@ pthread_mutex_unlock(&self->_lock);
     self = [super init];
     if (self) {
         pthread_mutex_init(&_lock, NULL);
-        self.releaseStrategy = YBNetworkReleaseStrategyFollowNetwork;
+        self.releaseStrategy = YBNetworkReleaseStrategyHoldRequest;
         self.repeatStrategy = YBNetworkRepeatStrategyAllAllowed;
         self.taskIDRecord = [NSMutableSet set];
     }
@@ -47,7 +47,9 @@ pthread_mutex_unlock(&self->_lock);
 
 - (void)dealloc {
     pthread_mutex_destroy(&_lock);
-    [self cancel];
+    if (self.releaseStrategy == YBNetworkReleaseStrategyWhenRequestDealloc) {
+        [self cancel];
+    }
 }
 
 #pragma mark - public
@@ -118,7 +120,16 @@ pthread_mutex_unlock(&self->_lock);
 
 - (void)startWithCacheKey:(NSString *)cacheKey {
     __block NSNumber *taskID = nil;
-    if (self.releaseStrategy == YBNetworkReleaseStrategyFollowRequest) {
+    if (self.releaseStrategy == YBNetworkReleaseStrategyHoldRequest) {
+        taskID = [[YBNetworkManager sharedManager] startNetworkingWithRequest:self uploadProgress:^(NSProgress * _Nonnull progress) {
+            [self requestUploadProgress:progress];
+        } downloadProgress:^(NSProgress * _Nonnull progress) {
+            [self requestDownloadProgress:progress];
+        } completion:^(YBNetworkResponse * _Nonnull response) {
+            YBN_IDECORD_LOCK([self.taskIDRecord removeObject:taskID];);
+            [self requestCompletionWithResponse:response cacheKey:cacheKey fromCache:NO];
+        }];
+    } else {
         __weak typeof(self) weakSelf = self;
         taskID = [[YBNetworkManager sharedManager] startNetworkingWithRequest:weakSelf uploadProgress:^(NSProgress * _Nonnull progress) {
             __strong typeof(weakSelf) self = weakSelf;
@@ -131,15 +142,6 @@ pthread_mutex_unlock(&self->_lock);
         } completion:^(YBNetworkResponse * _Nonnull response) {
             __strong typeof(weakSelf) self = weakSelf;
             if (!self) return;
-            YBN_IDECORD_LOCK([self.taskIDRecord removeObject:taskID];);
-            [self requestCompletionWithResponse:response cacheKey:cacheKey fromCache:NO];
-        }];
-    } else {
-        taskID = [[YBNetworkManager sharedManager] startNetworkingWithRequest:self uploadProgress:^(NSProgress * _Nonnull progress) {
-            [self requestUploadProgress:progress];
-        } downloadProgress:^(NSProgress * _Nonnull progress) {
-            [self requestDownloadProgress:progress];
-        } completion:^(YBNetworkResponse * _Nonnull response) {
             YBN_IDECORD_LOCK([self.taskIDRecord removeObject:taskID];);
             [self requestCompletionWithResponse:response cacheKey:cacheKey fromCache:NO];
         }];

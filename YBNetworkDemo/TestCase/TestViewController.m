@@ -7,10 +7,10 @@
 //
 
 #import "TestViewController.h"
-#import "DefaultRequest.h"
+#import "DefaultServerRequest.h"
 
 @interface TestViewController () <YBResponseDelegate>
-@property (nonatomic, strong) DefaultRequest *request;
+@property (nonatomic, strong) DefaultServerRequest *request;
 @end
 
 @implementation TestViewController
@@ -50,7 +50,7 @@
 
 - (void)searchNovel {
     
-    DefaultRequest *request = [DefaultRequest new];
+    DefaultServerRequest *request = [DefaultServerRequest new];
     request.requestMethod = YBRequestMethodGET;
     request.requestURI = @"novelSearchApi";
     request.requestParameter = @{@"name":@"盗墓笔记"};
@@ -83,9 +83,9 @@
 
 #pragma mark - getter
 
-- (DefaultRequest *)request {
+- (DefaultServerRequest *)request {
     if (!_request) {
-        _request = [DefaultRequest new];
+        _request = [DefaultServerRequest new];
         _request.delegate = self;
         _request.requestMethod = YBRequestMethodGET;
         _request.requestURI = @"weatherApi";

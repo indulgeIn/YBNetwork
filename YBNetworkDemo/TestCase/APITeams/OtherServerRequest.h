@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OtherRequest : YBBaseRequest
+@interface OtherServerRequest : YBBaseRequest
 
 @end
 

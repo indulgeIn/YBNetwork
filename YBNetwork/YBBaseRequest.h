@@ -66,9 +66,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 缓存处理器 */
 @property (nonatomic, strong, readonly) YBNetworkCache *cacheHandler;
 
-#pragma - 内存管理 & 重复请求 & 网络状态
+#pragma - 其它
 
-/** 内存释放策略 (默认 YBNetworkReleaseStrategyFollowNetwork) */
+/** 网络请求释放策略 (默认 YBNetworkReleaseStrategyHoldRequest) */
 @property (nonatomic, assign) YBNetworkReleaseStrategy releaseStrategy;
 
 /** 重复网络请求处理策略 (默认 YBNetworkRepeatStrategyAllAllowed) */

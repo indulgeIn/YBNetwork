@@ -6,8 +6,8 @@
 //  Copyright © 2019 杨波. All rights reserved.
 //
 
-#import "OtherRequest.h"
+#import "OtherServerRequest.h"
 
-@implementation OtherRequest
+@implementation OtherServerRequest
 //TODO
 @end

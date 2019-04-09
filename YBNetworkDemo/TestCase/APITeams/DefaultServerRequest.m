@@ -6,9 +6,9 @@
 //  Copyright © 2019 杨波. All rights reserved.
 //
 
-#import "DefaultRequest.h"
+#import "DefaultServerRequest.h"
 
-@implementation DefaultRequest
+@implementation DefaultServerRequest
 
 #pragma mark - life cycle
 

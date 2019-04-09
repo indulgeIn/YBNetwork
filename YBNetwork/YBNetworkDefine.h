@@ -61,10 +61,11 @@ typedef NS_ENUM(NSInteger, YBNetworkCacheReadMode) {
     YBNetworkCacheReadModeCancelNetwork,   //缓存命中后不发起网络请求
 };
 
-/// 内存释放策略
+/// 网络请求释放策略
 typedef NS_ENUM(NSInteger, YBNetworkReleaseStrategy) {
-    YBNetworkReleaseStrategyFollowNetwork, //网络请求完成之前，YBBaseRequest 实例不会释放 (网络任务会持有 YBBaseRequest)
-    YBNetworkReleaseStrategyFollowRequest  //网络请求将随着 YBBaseRequest 实例的释放而取消 (网络任务不会持有 YBBaseRequest)
+    YBNetworkReleaseStrategyHoldRequest,        //网络任务会持有 YBBaseRequest 实例，网络任务完成 YBBaseRequest 实例才会释放
+    YBNetworkReleaseStrategyWhenRequestDealloc, //网络请求将随着 YBBaseRequest 实例的释放而取消
+    YBNetworkReleaseStrategyNotCareRequest      //网络请求和 YBBaseRequest 实例无关联
 };
 
 /// 重复网络请求处理策略

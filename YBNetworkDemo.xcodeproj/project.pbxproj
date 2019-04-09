@@ -18,8 +18,8 @@
 		23C9192B225C4204006D7572 /* YBNetworkResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C91927225C4204006D7572 /* YBNetworkResponse.m */; };
 		23C91930225C43E7006D7572 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9192F225C43E7006D7572 /* TestViewController.m */; };
 		23C91933225C48A1006D7572 /* YBNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C91932225C48A1006D7572 /* YBNetworkCache.m */; };
-		23C9193D225C4C6F006D7572 /* DefaultRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9193C225C4C6F006D7572 /* DefaultRequest.m */; };
-		23C91940225C4C7D006D7572 /* OtherRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9193F225C4C7D006D7572 /* OtherRequest.m */; };
+		23C9193D225C4C6F006D7572 /* DefaultServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9193C225C4C6F006D7572 /* DefaultServerRequest.m */; };
+		23C91940225C4C7D006D7572 /* OtherServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C9193F225C4C7D006D7572 /* OtherServerRequest.m */; };
 		B2C2CAD4C03F9EFE0F2EE67B /* libPods-YBNetworkDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A893DB8000A939C5DA5801 /* libPods-YBNetworkDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -47,10 +47,10 @@
 		23C9192F225C43E7006D7572 /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		23C91931225C47FE006D7572 /* YBBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseRequest.h; sourceTree = "<group>"; };
 		23C91932225C48A1006D7572 /* YBNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBNetworkCache.m; sourceTree = "<group>"; };
-		23C9193B225C4C6F006D7572 /* DefaultRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultRequest.h; sourceTree = "<group>"; };
-		23C9193C225C4C6F006D7572 /* DefaultRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultRequest.m; sourceTree = "<group>"; };
-		23C9193E225C4C7D006D7572 /* OtherRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherRequest.h; sourceTree = "<group>"; };
-		23C9193F225C4C7D006D7572 /* OtherRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherRequest.m; sourceTree = "<group>"; };
+		23C9193B225C4C6F006D7572 /* DefaultServerRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultServerRequest.h; sourceTree = "<group>"; };
+		23C9193C225C4C6F006D7572 /* DefaultServerRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultServerRequest.m; sourceTree = "<group>"; };
+		23C9193E225C4C7D006D7572 /* OtherServerRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherServerRequest.h; sourceTree = "<group>"; };
+		23C9193F225C4C7D006D7572 /* OtherServerRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherServerRequest.m; sourceTree = "<group>"; };
 		4C5D38D42F9FA799AD4ABC18 /* Pods-YBNetworkDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBNetworkDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-YBNetworkDemo/Pods-YBNetworkDemo.release.xcconfig"; sourceTree = "<group>"; };
 		56A893DB8000A939C5DA5801 /* libPods-YBNetworkDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YBNetworkDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF27588BBC9F85C4C332F206 /* Pods-YBNetworkDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBNetworkDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YBNetworkDemo/Pods-YBNetworkDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,9 +128,9 @@
 		23C9191A225C4204006D7572 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				23C9191C225C4204006D7572 /* YBNetworkCache.h */,
 				23C91932225C48A1006D7572 /* YBNetworkCache.m */,
 				23C9191B225C4204006D7572 /* YBNetworkCache+Internal.h */,
-				23C9191C225C4204006D7572 /* YBNetworkCache.h */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -167,10 +167,10 @@
 		23C91934225C4BCD006D7572 /* APITeams */ = {
 			isa = PBXGroup;
 			children = (
-				23C9193B225C4C6F006D7572 /* DefaultRequest.h */,
-				23C9193C225C4C6F006D7572 /* DefaultRequest.m */,
-				23C9193E225C4C7D006D7572 /* OtherRequest.h */,
-				23C9193F225C4C7D006D7572 /* OtherRequest.m */,
+				23C9193B225C4C6F006D7572 /* DefaultServerRequest.h */,
+				23C9193C225C4C6F006D7572 /* DefaultServerRequest.m */,
+				23C9193E225C4C7D006D7572 /* OtherServerRequest.h */,
+				23C9193F225C4C7D006D7572 /* OtherServerRequest.m */,
 			);
 			path = APITeams;
 			sourceTree = "<group>";
@@ -277,12 +277,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				23C9192A225C4204006D7572 /* YBNetworkManager.m in Sources */,
-				23C9193D225C4C6F006D7572 /* DefaultRequest.m in Sources */,
+				23C9193D225C4C6F006D7572 /* DefaultServerRequest.m in Sources */,
 				23C91908225C4039006D7572 /* ViewController.m in Sources */,
 				23C91913225C403C006D7572 /* main.m in Sources */,
 				23C91905225C4039006D7572 /* AppDelegate.m in Sources */,
 				23C91933225C48A1006D7572 /* YBNetworkCache.m in Sources */,
-				23C91940225C4C7D006D7572 /* OtherRequest.m in Sources */,
+				23C91940225C4C7D006D7572 /* OtherServerRequest.m in Sources */,
 				23C91929225C4204006D7572 /* YBBaseRequest.m in Sources */,
 				23C91930225C43E7006D7572 /* TestViewController.m in Sources */,
 				23C9192B225C4204006D7572 /* YBNetworkResponse.m in Sources */,
