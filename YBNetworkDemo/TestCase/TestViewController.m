@@ -68,7 +68,13 @@
 }
 
 - (void)searchWeather {
-    [self.request start];
+//    [self.request start];
+    
+    [self.request startWithSuccess:^(YBNetworkResponse * _Nonnull response) {
+        NSLog(@"response success : \n%@", response.responseObject);
+    } failure:^(YBNetworkResponse * _Nonnull response) {
+        NSLog(@"response failure : \n错误类型 : %@", @(response.errorType));
+    }];
 }
 
 #pragma mark - <YBResponseDelegate>
@@ -86,10 +92,11 @@
 - (DefaultServerRequest *)request {
     if (!_request) {
         _request = [DefaultServerRequest new];
-        _request.delegate = self;
+//        _request.delegate = self;
         _request.requestMethod = YBRequestMethodGET;
         _request.requestURI = @"weatherApi";
         _request.requestParameter = @{@"city":@"北京"};
+        _request.repeatStrategy = YBNetworkRepeatStrategyCancelOldest;
     }
     return _request;
 }

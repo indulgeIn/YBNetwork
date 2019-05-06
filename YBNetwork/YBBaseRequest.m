@@ -46,10 +46,10 @@ pthread_mutex_unlock(&self->_lock);
 }
 
 - (void)dealloc {
-    pthread_mutex_destroy(&_lock);
     if (self.releaseStrategy == YBNetworkReleaseStrategyWhenRequestDealloc) {
         [self cancel];
     }
+    pthread_mutex_destroy(&_lock);
 }
 
 #pragma mark - public
@@ -76,7 +76,7 @@ pthread_mutex_unlock(&self->_lock);
         switch (self.repeatStrategy) {
             case YBNetworkRepeatStrategyCancelNewest: return;
             case YBNetworkRepeatStrategyCancelOldest: {
-                [self cancel];
+                [self cancelNetworking];
             }
                 break;
             default: break;
@@ -106,7 +106,12 @@ pthread_mutex_unlock(&self->_lock);
 }
 
 - (void)cancel {
+    self.delegate = nil;
     [self clearRequestBlocks];
+    [self cancelNetworking];
+}
+
+- (void)cancelNetworking {
     [[YBNetworkManager sharedManager] cancelNetworkingWithSet:self.taskIDRecord];
     YBN_IDECORD_LOCK([self.taskIDRecord removeAllObjects];)
 }
