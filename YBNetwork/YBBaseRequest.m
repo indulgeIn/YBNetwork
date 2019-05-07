@@ -93,7 +93,7 @@ pthread_mutex_unlock(&self->_lock);
     [self.cacheHandler objectForKey:cacheKey withBlock:^(NSString * _Nonnull key, id<NSCoding>  _Nonnull object) {
         if (object) { //缓存命中
             YBNetworkResponse *response = [YBNetworkResponse responseWithSessionTask:nil responseObject:object error:nil];
-            [self requestSuccessWithResponse:response cacheKey:cacheKey fromCache:YES];
+            [self successWithResponse:response cacheKey:cacheKey fromCache:YES];
         }
         
         BOOL needRequestNetwork = !object || self.cacheHandler.readMode == YBNetworkCacheReadModeAlsoNetwork;
@@ -112,8 +112,12 @@ pthread_mutex_unlock(&self->_lock);
 }
 
 - (void)cancelNetworking {
-    [[YBNetworkManager sharedManager] cancelNetworkingWithSet:self.taskIDRecord];
-    YBN_IDECORD_LOCK([self.taskIDRecord removeAllObjects];)
+    //此处取消顺序很重要
+    YBN_IDECORD_LOCK(
+        NSSet *removeSet = self.taskIDRecord.mutableCopy;
+        [self.taskIDRecord removeAllObjects];
+    )
+    [[YBNetworkManager sharedManager] cancelNetworkingWithSet:removeSet];
 }
 
 - (BOOL)isExecuting {
@@ -124,31 +128,40 @@ pthread_mutex_unlock(&self->_lock);
 #pragma mark - request
 
 - (void)startWithCacheKey:(NSString *)cacheKey {
+    BOOL(^cancelled)(NSNumber *) = ^BOOL(NSNumber *taskID){
+        YBN_IDECORD_LOCK(BOOL contains = [self.taskIDRecord containsObject:taskID];)
+        return !contains;
+    };
+    
     __block NSNumber *taskID = nil;
     if (self.releaseStrategy == YBNetworkReleaseStrategyHoldRequest) {
         taskID = [[YBNetworkManager sharedManager] startNetworkingWithRequest:self uploadProgress:^(NSProgress * _Nonnull progress) {
+            if (cancelled(taskID)) return;
             [self requestUploadProgress:progress];
         } downloadProgress:^(NSProgress * _Nonnull progress) {
+            if (cancelled(taskID)) return;
             [self requestDownloadProgress:progress];
         } completion:^(YBNetworkResponse * _Nonnull response) {
-            YBN_IDECORD_LOCK([self.taskIDRecord removeObject:taskID];);
-            [self requestCompletionWithResponse:response cacheKey:cacheKey fromCache:NO];
+            if (cancelled(taskID)) return;
+            [self requestCompletionWithResponse:response cacheKey:cacheKey fromCache:NO taskID:taskID];
         }];
     } else {
         __weak typeof(self) weakSelf = self;
         taskID = [[YBNetworkManager sharedManager] startNetworkingWithRequest:weakSelf uploadProgress:^(NSProgress * _Nonnull progress) {
+            if (cancelled(taskID)) return;
             __strong typeof(weakSelf) self = weakSelf;
             if (!self) return;
             [self requestUploadProgress:progress];
         } downloadProgress:^(NSProgress * _Nonnull progress) {
+            if (cancelled(taskID)) return;
             __strong typeof(weakSelf) self = weakSelf;
             if (!self) return;
             [self requestDownloadProgress:progress];
         } completion:^(YBNetworkResponse * _Nonnull response) {
+            if (cancelled(taskID)) return;
             __strong typeof(weakSelf) self = weakSelf;
             if (!self) return;
-            YBN_IDECORD_LOCK([self.taskIDRecord removeObject:taskID];);
-            [self requestCompletionWithResponse:response cacheKey:cacheKey fromCache:NO];
+            [self requestCompletionWithResponse:response cacheKey:cacheKey fromCache:NO taskID:taskID];
         }];
     }
     if (taskID) {
@@ -180,15 +193,20 @@ pthread_mutex_unlock(&self->_lock);
     })
 }
 
-- (void)requestCompletionWithResponse:(YBNetworkResponse *)response cacheKey:(NSString *)cacheKey fromCache:(BOOL)fromCache {
+- (void)requestCompletionWithResponse:(YBNetworkResponse *)response cacheKey:(NSString *)cacheKey fromCache:(BOOL)fromCache taskID:(NSNumber *)taskID {
     if (response.error) {
-        [self requestFailureWithResponse:response];
+        [self failureWithResponse:response];
     } else {
-        [self requestSuccessWithResponse:response cacheKey:cacheKey fromCache:NO];
+        [self successWithResponse:response cacheKey:cacheKey fromCache:NO];
     }
+    
+    YBNETWORK_MAIN_QUEUE_ASYNC(^{
+        [self.taskIDRecord removeObject:taskID];
+        [self clearRequestBlocks];
+    })
 }
 
-- (void)requestSuccessWithResponse:(YBNetworkResponse *)response cacheKey:(NSString *)cacheKey fromCache:(BOOL)fromCache {
+- (void)successWithResponse:(YBNetworkResponse *)response cacheKey:(NSString *)cacheKey fromCache:(BOOL)fromCache {
     
     BOOL shouldCache = !self.cacheHandler.shouldCacheBlock || self.cacheHandler.shouldCacheBlock(response);
     BOOL isSendFile = self.requestConstructingBody || self.downloadPath.length > 0;
@@ -219,12 +237,11 @@ pthread_mutex_unlock(&self->_lock);
             if (self.successBlock) {
                 self.successBlock(response);
             }
-            [self clearRequestBlocks];
         }
     })
 }
 
-- (void)requestFailureWithResponse:(YBNetworkResponse *)response {
+- (void)failureWithResponse:(YBNetworkResponse *)response {
     if ([self respondsToSelector:@selector(yb_preprocessFailureInChildThreadWithResponse:)]) {
         [self yb_preprocessFailureInChildThreadWithResponse:response];
     }
@@ -240,7 +257,6 @@ pthread_mutex_unlock(&self->_lock);
         if (self.failureBlock) {
             self.failureBlock(response);
         }
-        [self clearRequestBlocks];
     })
 }
 

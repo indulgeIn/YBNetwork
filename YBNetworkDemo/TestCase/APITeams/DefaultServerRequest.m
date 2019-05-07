@@ -15,10 +15,13 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.baseURI = @"https://www.apiopen.top";
+        self.baseURI = @"http://japi.juhe.cn";
         self.requestSerializer = [AFHTTPRequestSerializer serializer];
         self.requestSerializer.timeoutInterval = 25;
         self.responseSerializer = [AFJSONResponseSerializer serializer];
+        NSMutableSet *types = self.responseSerializer.acceptableContentTypes.mutableCopy;
+        [types addObject:@"text/html"];
+        self.responseSerializer.acceptableContentTypes = types;
         
         [self.cacheHandler setShouldCacheBlock:^BOOL(YBNetworkResponse * _Nonnull response) {
             // 检查数据正确性，保证缓存有用的内容
@@ -32,7 +35,7 @@
 
 - (NSDictionary *)yb_preprocessParameter:(NSDictionary *)parameter {
     NSMutableDictionary *tmp = [NSMutableDictionary dictionaryWithDictionary:parameter ?: @{}];
-    tmp[@"deviceID"] = @"test250";  //给每一个请求，添加额外的参数
+    tmp[@"test_deviceID"] = @"test250";  //给每一个请求，添加额外的参数
     return tmp;
 }
 
@@ -51,9 +54,7 @@
 }
 
 - (void)yb_preprocessFailureInChildThreadWithResponse:(YBNetworkResponse *)response {
-    if (response.errorType == YBResponseErrorTypeCancelled) {
-        NSLog(@"取消网络请求"); //打印每一个取消错误
-    }
+    
 }
 
 - (void)yb_preprocessFailureInMainThreadWithResponse:(YBNetworkResponse *)response {
