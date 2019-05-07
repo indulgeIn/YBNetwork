@@ -19,7 +19,7 @@
 
 - (void)dealloc {
     NSLog(@"释放：%@", self);
-    [self.request cancel];
+    if (_request) [_request cancel];
 }
 
 - (void)viewDidLoad {
@@ -70,12 +70,6 @@
 
 - (void)searchB {
     [self.request start];
-    
-//    [self.request startWithSuccess:^(YBNetworkResponse * _Nonnull response) {
-//        NSLog(@"response success : %@", response.responseObject);
-//    } failure:^(YBNetworkResponse * _Nonnull response) {
-//        NSLog(@"response failure : 类型 : %@, %@", @(response.errorType), response.error);
-//    }];
 }
 
 #pragma mark - <YBResponseDelegate>
