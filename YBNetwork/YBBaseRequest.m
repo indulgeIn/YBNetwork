@@ -164,7 +164,7 @@ pthread_mutex_unlock(&self->_lock);
             [self requestCompletionWithResponse:response cacheKey:cacheKey fromCache:NO taskID:taskID];
         }];
     }
-    if (taskID) {
+    if (nil != taskID) {
         YBN_IDECORD_LOCK([self.taskIDRecord addObject:taskID];)
     }
 }
@@ -271,7 +271,7 @@ pthread_mutex_unlock(&self->_lock);
 }
 
 - (NSString *)requestIdentifier {
-    NSString *identifier = [NSString stringWithFormat:@"%@%@%@", [self requestMethodString], [self requestURLString], [self stringFromParameter:self.requestParameter]];
+    NSString *identifier = [NSString stringWithFormat:@"%@-%@%@", [self requestMethodString], [self requestURLString], [self stringFromParameter:self.requestParameter]];
     return identifier;
 }
 

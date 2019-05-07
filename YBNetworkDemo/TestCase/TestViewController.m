@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     [@[@"调用接口A", @"调用接口B"] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];

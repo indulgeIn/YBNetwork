@@ -77,6 +77,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 是否正在网络请求 */
 - (BOOL)isExecuting;
 
+/** 请求标识，可以查看完整的请求路径和参数 */
+- (NSString *)requestIdentifier;
+
 #pragma - 网络请求公共配置 (以子类化方式实现: 针对不同的接口团队设计不同的公共配置)
 
 /**
