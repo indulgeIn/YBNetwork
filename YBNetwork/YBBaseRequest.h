@@ -2,8 +2,8 @@
 //  YBBaseRequest.h
 //  YBNetwork<https://github.com/indulgeIn/YBNetwork>
 //
-//  Created by 杨波 on 2019/4/3.
-//  Copyright © 2019 杨波. All rights reserved.
+//  Created by 波儿菜 on 2019/4/3.
+//  Copyright © 2019 波儿菜. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -101,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-/// 预处理请求数据 (重载分类方法)
+/// 预处理请求数据 (重写分类方法)
 @interface YBBaseRequest (PreprocessRequest)
 
 /** 预处理请求参数, 返回处理后的请求参数 */
@@ -113,8 +113,11 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-/// 预处理响应数据 (重载分类方法)
+/// 预处理响应数据 (重写分类方法)
 @interface YBBaseRequest (PreprocessResponse)
+
+/** 是否将响应成功转换为响应错误（在某些情况下服务器返回一些代表访问错误的状态码，就可以重写这个方法直接转换为错误响应） */
+- (BOOL)yb_preprocessShouldFailedWithResponse:(YBNetworkResponse *)response;
 
 /** 预处理请求成功数据 (子线程执行, 若数据来自缓存在主线程执行) */
 - (void)yb_preprocessSuccessInChildThreadWithResponse:(YBNetworkResponse *)response;

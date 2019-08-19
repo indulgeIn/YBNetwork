@@ -2,8 +2,8 @@
 //  DefaultRequest.m
 //  YBNetworkDemo
 //
-//  Created by 杨波 on 2019/4/9.
-//  Copyright © 2019 杨波. All rights reserved.
+//  Created by 波儿菜 on 2019/4/9.
+//  Copyright © 2019 波儿菜. All rights reserved.
 //
 
 #import "DefaultServerRequest.h"
@@ -36,6 +36,15 @@
 - (void)start {
     NSLog(@"%@", self.requestIdentifier);
     [super start];
+}
+
+- (BOOL)yb_preprocessShouldFailedWithResponse:(YBNetworkResponse *)response {
+    NSDictionary *responseDic = response.responseObject;
+    if ([responseDic isKindOfClass:NSDictionary.self] && [[NSString stringWithFormat:@"%@", responseDic[@"error_code"]] isEqualToString:@"2"]) {
+        response.errorType = YBResponseErrorTypeServerError;
+        return YES;
+    }
+    return NO;
 }
 
 - (NSDictionary *)yb_preprocessParameter:(NSDictionary *)parameter {

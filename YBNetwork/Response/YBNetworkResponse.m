@@ -2,8 +2,8 @@
 //  YBNetworkResponse.m
 //  YBNetwork<https://github.com/indulgeIn/YBNetwork>
 //
-//  Created by 杨波 on 2019/4/6.
-//  Copyright © 2019 杨波. All rights reserved.
+//  Created by 波儿菜 on 2019/4/6.
+//  Copyright © 2019 波儿菜. All rights reserved.
 //
 
 #import "YBNetworkResponse.h"

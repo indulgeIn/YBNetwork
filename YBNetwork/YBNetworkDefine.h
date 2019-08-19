@@ -2,8 +2,8 @@
 //  YBNetworkDefine.h
 //  YBNetwork<https://github.com/indulgeIn/YBNetwork>
 //
-//  Created by 杨波 on 2019/4/3.
-//  Copyright © 2019 杨波. All rights reserved.
+//  Created by 波儿菜 on 2019/4/3.
+//  Copyright © 2019 波儿菜. All rights reserved.
 //
 
 #ifndef YBNetworkDefine_h
@@ -40,39 +40,57 @@ typedef NS_ENUM(NSInteger, YBRequestMethod) {
 
 /// 网络响应错误类型
 typedef NS_ENUM(NSInteger, YBResponseErrorType) {
-    YBResponseErrorTypeNone,       //无
-    YBResponseErrorTypeTimedOut,   //超时
-    YBResponseErrorTypeCancelled,  //取消
-    YBResponseErrorTypeNoNetwork   //无网络
+    /// 未知
+    YBResponseErrorTypeUnknown,
+    /// 超时
+    YBResponseErrorTypeTimedOut,
+    /// 取消
+    YBResponseErrorTypeCancelled,
+    /// 无网络
+    YBResponseErrorTypeNoNetwork,
+    /// 服务器错误
+    YBResponseErrorTypeServerError
 };
 
 /// 缓存存储模式
 typedef NS_OPTIONS(NSUInteger, YBNetworkCacheWriteMode) {
-    YBNetworkCacheWriteModeNone = 0,            //无缓存
-    YBNetworkCacheWriteModeMemory = 1 << 0,     //内存缓存
-    YBNetworkCacheWriteModeDisk = 1 << 1,       //磁盘缓存
+    /// 无缓存
+    YBNetworkCacheWriteModeNone = 0,
+    /// 内存缓存
+    YBNetworkCacheWriteModeMemory = 1 << 0,
+    /// 磁盘缓存
+    YBNetworkCacheWriteModeDisk = 1 << 1,
     YBNetworkCacheWriteModeMemoryAndDisk = YBNetworkCacheWriteModeMemory | YBNetworkCacheWriteModeDisk
 };
 
 /// 缓存读取模式
 typedef NS_ENUM(NSInteger, YBNetworkCacheReadMode) {
-    YBNetworkCacheReadModeNone,            //不读取缓存
-    YBNetworkCacheReadModeAlsoNetwork,     //缓存命中后仍然发起网络请求
-    YBNetworkCacheReadModeCancelNetwork,   //缓存命中后不发起网络请求
+    /// 不读取缓存
+    YBNetworkCacheReadModeNone,
+    /// 缓存命中后仍然发起网络请求
+    YBNetworkCacheReadModeAlsoNetwork,
+    /// 缓存命中后不发起网络请求
+    YBNetworkCacheReadModeCancelNetwork,
 };
 
 /// 网络请求释放策略
 typedef NS_ENUM(NSInteger, YBNetworkReleaseStrategy) {
-    YBNetworkReleaseStrategyHoldRequest,        //网络任务会持有 YBBaseRequest 实例，网络任务完成 YBBaseRequest 实例才会释放
-    YBNetworkReleaseStrategyWhenRequestDealloc, //网络请求将随着 YBBaseRequest 实例的释放而取消
-    YBNetworkReleaseStrategyNotCareRequest      //网络请求和 YBBaseRequest 实例无关联
+    /// 网络任务会持有 YBBaseRequest 实例，网络任务完成 YBBaseRequest 实例才会释放
+    YBNetworkReleaseStrategyHoldRequest,
+    /// 网络请求将随着 YBBaseRequest 实例的释放而取消
+    YBNetworkReleaseStrategyWhenRequestDealloc,
+    /// 网络请求和 YBBaseRequest 实例无关联
+    YBNetworkReleaseStrategyNotCareRequest
 };
 
 /// 重复网络请求处理策略
 typedef NS_ENUM(NSInteger, YBNetworkRepeatStrategy) {
-    YBNetworkRepeatStrategyAllAllowed,     //允许重复网络请求
-    YBNetworkRepeatStrategyCancelOldest,   //取消最旧的网络请求
-    YBNetworkRepeatStrategyCancelNewest    //取消最新的网络请求
+    /// 允许重复网络请求
+    YBNetworkRepeatStrategyAllAllowed,
+    /// 取消最旧的网络请求
+    YBNetworkRepeatStrategyCancelOldest,
+    /// 取消最新的网络请求
+    YBNetworkRepeatStrategyCancelNewest
 };
 
 

@@ -2,8 +2,8 @@
 //  TestViewController.m
 //  YBNetworkDemo
 //
-//  Created by 杨波 on 2019/4/9.
-//  Copyright © 2019 杨波. All rights reserved.
+//  Created by 波儿菜 on 2019/4/9.
+//  Copyright © 2019 波儿菜. All rights reserved.
 //
 
 #import "TestViewController.h"
@@ -61,11 +61,11 @@
     [request startWithSuccess:^(YBNetworkResponse * _Nonnull response) {
         __strong typeof(weakSelf) self = weakSelf;
         if (!self) return;
-        NSLog(@"response success : %@", response.responseObject);
+        NSLog(@"\nresponse success : %@", response.responseObject);
     } failure:^(YBNetworkResponse * _Nonnull response) {
         __strong typeof(weakSelf) self = weakSelf;
         if (!self) return;
-        NSLog(@"response failure : 类型 : %@", @(response.errorType));
+        NSLog(@"\nresponse failure : 类型 : %@", @(response.errorType));
     }];
 }
 
@@ -76,11 +76,11 @@
 #pragma mark - <YBResponseDelegate>
 
 - (void)request:(__kindof YBBaseRequest *)request successWithResponse:(YBNetworkResponse *)response {
-    NSLog(@"response success : %@", response.responseObject);
+    NSLog(@"\nresponse success : %@", response.responseObject);
 }
 
 - (void)request:(__kindof YBBaseRequest *)request failureWithResponse:(YBNetworkResponse *)response {
-    NSLog(@"response failure : 类型 : %@", @(response.errorType));
+    NSLog(@"\nresponse failure : 类型 : %@", @(response.errorType));
 }
 
 #pragma mark - getter
