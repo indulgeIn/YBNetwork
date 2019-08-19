@@ -1,5 +1,9 @@
 # YBNetwork
 
+[![Cocoapods](https://img.shields.io/cocoapods/v/YBNetwork.svg)](https://cocoapods.org/pods/YBNetwork)&nbsp;
+[![Cocoapods](https://img.shields.io/cocoapods/p/YBNetwork.svg)](https://github.com/indulgeIn/YBNetwork)&nbsp;
+[![License](https://img.shields.io/github/license/indulgeIn/YBNetwork.svg)](https://github.com/indulgeIn/YBNetwork)&nbsp;
+
 基于 AFNetworking 二次封装，调用方便，设计简洁，易于拓展。
 (暂时没有支持 cocopods)
 
