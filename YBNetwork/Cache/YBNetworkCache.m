@@ -64,6 +64,8 @@ static YYMemoryCache *_memoryCache = nil;
 #pragma mark - internal
 
 - (void)setObject:(id<NSCoding>)object forKey:(id)key {
+    if (self.writeMode == YBNetworkCacheWriteModeNone) return;
+    
     YBNetworkCachePackage *package = [YBNetworkCachePackage new];
     package.object = object;
     package.updateDate = [NSDate date];
