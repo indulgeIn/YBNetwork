@@ -16,7 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)requestMethodString;
 
 /// 请求 URL 字符串
-- (NSString *)requestURLString;
+- (NSString *)validRequestURLString;
+
+/// 请求参数字符串
+- (id)validRequestParameter;
 
 @end
 

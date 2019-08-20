@@ -139,8 +139,8 @@ pthread_mutex_unlock(&self->_lock);
     // 构建网络请求数据
     NSString *method = [request requestMethodString];
     AFHTTPRequestSerializer *serializer = [self requestSerializerForRequest:request];
-    NSString *URLString = [self URLStringForRequest:request];
-    id parameter = [self parameterForRequest:request];
+    NSString *URLString = [request validRequestURLString];
+    id parameter = [request validRequestParameter];
     
     // 构建 URLRequest
     NSError *error = nil;
@@ -173,22 +173,6 @@ pthread_mutex_unlock(&self->_lock);
         serializer.timeoutInterval = request.requestTimeoutInterval;
     }
     return serializer;
-}
-
-- (NSString *)URLStringForRequest:(YBBaseRequest *)request {
-    NSString *URLString = [request requestURLString];
-    if ([request respondsToSelector:@selector(yb_preprocessURLString:)]) {
-        URLString = [request yb_preprocessURLString:URLString];
-    }
-    return URLString;
-}
-
-- (id)parameterForRequest:(YBBaseRequest *)request {
-    id parameter = request.requestParameter;
-    if ([request respondsToSelector:@selector(yb_preprocessParameter:)]) {
-        parameter = [request yb_preprocessParameter:parameter];
-    }
-    return parameter;
 }
 
 - (AFHTTPSessionManager *)sessionManagerForRequest:(YBBaseRequest *)request {

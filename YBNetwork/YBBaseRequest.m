@@ -276,7 +276,7 @@ pthread_mutex_unlock(&self->_lock);
 }
 
 - (NSString *)requestIdentifier {
-    NSString *identifier = [NSString stringWithFormat:@"%@-%@%@", [self requestMethodString], [self requestURLString], [self stringFromParameter:self.requestParameter]];
+    NSString *identifier = [NSString stringWithFormat:@"%@-%@%@", [self requestMethodString], [self validRequestURLString], [self stringFromParameter:[self validRequestParameter]]];
     return identifier;
 }
 
@@ -310,10 +310,21 @@ pthread_mutex_unlock(&self->_lock);
     }
 }
 
-- (NSString *)requestURLString {
+- (NSString *)validRequestURLString {
     NSURL *baseURL = [NSURL URLWithString:self.baseURI];
     NSString *URLString = [NSURL URLWithString:self.requestURI relativeToURL:baseURL].absoluteString;
+    if ([self respondsToSelector:@selector(yb_preprocessURLString:)]) {
+        URLString = [self yb_preprocessURLString:URLString];
+    }
     return URLString;
+}
+
+- (id)validRequestParameter {
+    id parameter = self.requestParameter;
+    if ([self respondsToSelector:@selector(yb_preprocessParameter:)]) {
+        parameter = [self yb_preprocessParameter:parameter];
+    }
+    return parameter;
 }
 
 #pragma mark - getter

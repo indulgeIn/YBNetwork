@@ -53,12 +53,18 @@
 - (void)searchA {
     
     DefaultServerRequest *request = [DefaultServerRequest new];
+    request.cacheHandler.writeMode = YBNetworkCacheWriteModeMemoryAndDisk;
+    request.cacheHandler.readMode = YBNetworkCacheReadModeAlsoNetwork;
     request.requestMethod = YBRequestMethodGET;
     request.requestURI = @"charconvert/change.from";
     request.requestParameter = @{@"key":@"0e27c575047e83b407ff9e517cde9c76", @"type":@"2", @"text":@"呵呵呵呵"};
     
     __weak typeof(self) weakSelf = self;
-    [request startWithSuccess:^(YBNetworkResponse * _Nonnull response) {
+    [request startWithCache:^(YBNetworkResponse * _Nonnull response) {
+        __strong typeof(weakSelf) self = weakSelf;
+        if (!self) return;
+        NSLog(@"\ncache success : %@", response.responseObject);
+    } success:^(YBNetworkResponse * _Nonnull response) {
         __strong typeof(weakSelf) self = weakSelf;
         if (!self) return;
         NSLog(@"\nresponse success : %@", response.responseObject);
