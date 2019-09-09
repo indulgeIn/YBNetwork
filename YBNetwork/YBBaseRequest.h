@@ -120,12 +120,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface YBBaseRequest (PreprocessResponse)
 
 /**
- 网络请求回调重定向，将会再下面几个预处理方法之前调用。
+ 网络请求回调重定向，方法在子线程回调，并会再下面几个预处理方法之前调用。
  需要特别注意 YBRequestRedirectionStop 会停止后续操作，如果业务使用闭包回调，这个闭包不会被清空，可能会造成循环引用，所以这种场景务必保证回调被正确处理，一般有以下两种方式：
  1、Stop 过后执行特定逻辑，然后重新 start 发起网络请求，之前的回调闭包就能继续正常处理了。
  2、直接调用 clearRequestBlocks 清空回调闭包。
  */
-- (YBRequestRedirection)yb_redirectionWithResponse:(YBNetworkResponse *)response;
+- (void)yb_redirection:(void(^)(YBRequestRedirection))redirection response:(YBNetworkResponse *)response;
 
 /** 预处理请求成功数据 (子线程执行, 若数据来自缓存在主线程执行) */
 - (void)yb_preprocessSuccessInChildThreadWithResponse:(YBNetworkResponse *)response;

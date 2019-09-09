@@ -202,29 +202,31 @@ pthread_mutex_unlock(&self->_lock);
 }
 
 - (void)requestCompletionWithResponse:(YBNetworkResponse *)response cacheKey:(NSString *)cacheKey fromCache:(BOOL)fromCache taskID:(NSNumber *)taskID {
-    YBRequestRedirection redirection;
-    if ([self respondsToSelector:@selector(yb_redirectionWithResponse:)]) {
-        redirection = [self yb_redirectionWithResponse:response];
+    void(^process)(YBRequestRedirection) = ^(YBRequestRedirection redirection) {
+        switch (redirection) {
+            case YBRequestRedirectionSuccess: {
+                [self successWithResponse:response cacheKey:cacheKey fromCache:NO];
+            }
+                break;
+            case YBRequestRedirectionFailure: {
+                [self failureWithResponse:response];
+            }
+                break;
+            case YBRequestRedirectionStop:
+            default: break;
+        }
+        
+        YBNETWORK_MAIN_QUEUE_ASYNC(^{
+            [self.taskIDRecord removeObject:taskID];
+        })
+    };
+    
+    if ([self respondsToSelector:@selector(yb_redirection:response:)]) {
+        [self yb_redirection:process response:response];
     } else {
-        redirection = response.error ? YBRequestRedirectionFailure : YBRequestRedirectionSuccess;
+        YBRequestRedirection redirection = response.error ? YBRequestRedirectionFailure : YBRequestRedirectionSuccess;
+        process(redirection);
     }
-    
-    switch (redirection) {
-        case YBRequestRedirectionSuccess: {
-            [self successWithResponse:response cacheKey:cacheKey fromCache:NO];
-        }
-            break;
-        case YBRequestRedirectionFailure: {
-            [self failureWithResponse:response];
-        }
-            break;
-        case YBRequestRedirectionStop:
-        default: break;
-    }
-    
-    YBNETWORK_MAIN_QUEUE_ASYNC(^{
-        [self.taskIDRecord removeObject:taskID];
-    })
 }
 
 - (void)successWithResponse:(YBNetworkResponse *)response cacheKey:(NSString *)cacheKey fromCache:(BOOL)fromCache {

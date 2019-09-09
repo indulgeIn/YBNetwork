@@ -38,13 +38,14 @@
     [super start];
 }
 
-- (BOOL)yb_preprocessShouldFailedWithResponse:(YBNetworkResponse *)response {
+- (void)yb_redirection:(void (^)(YBRequestRedirection))redirection response:(YBNetworkResponse *)response {
     NSDictionary *responseDic = response.responseObject;
     if ([responseDic isKindOfClass:NSDictionary.self] && [[NSString stringWithFormat:@"%@", responseDic[@"error_code"]] isEqualToString:@"2"]) {
+        redirection(YBRequestRedirectionFailure);
         response.errorType = YBResponseErrorTypeServerError;
-        return YES;
+        return;
     }
-    return NO;
+    redirection(YBRequestRedirectionSuccess);
 }
 
 - (NSDictionary *)yb_preprocessParameter:(NSDictionary *)parameter {
