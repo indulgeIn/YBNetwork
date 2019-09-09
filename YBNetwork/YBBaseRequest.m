@@ -125,6 +125,14 @@ pthread_mutex_unlock(&self->_lock);
     return isExecuting;
 }
 
+- (void)clearRequestBlocks {
+    self.uploadProgress = nil;
+    self.downloadProgress = nil;
+    self.cacheBlock = nil;
+    self.successBlock = nil;
+    self.failureBlock = nil;
+}
+
 #pragma mark - request
 
 - (void)startWithCacheKey:(NSString *)cacheKey {
@@ -194,20 +202,28 @@ pthread_mutex_unlock(&self->_lock);
 }
 
 - (void)requestCompletionWithResponse:(YBNetworkResponse *)response cacheKey:(NSString *)cacheKey fromCache:(BOOL)fromCache taskID:(NSNumber *)taskID {
-    BOOL shouldFailed = nil != response.error;
-    if (!shouldFailed && [self respondsToSelector:@selector(yb_preprocessShouldFailedWithResponse:)]) {
-        shouldFailed = [self yb_preprocessShouldFailedWithResponse:response];
+    YBRequestRedirection redirection;
+    if ([self respondsToSelector:@selector(yb_redirectionWithResponse:)]) {
+        redirection = [self yb_redirectionWithResponse:response];
+    } else {
+        redirection = response.error ? YBRequestRedirectionFailure : YBRequestRedirectionSuccess;
     }
     
-    if (shouldFailed) {
-        [self failureWithResponse:response];
-    } else {
-        [self successWithResponse:response cacheKey:cacheKey fromCache:NO];
+    switch (redirection) {
+        case YBRequestRedirectionSuccess: {
+            [self successWithResponse:response cacheKey:cacheKey fromCache:NO];
+        }
+            break;
+        case YBRequestRedirectionFailure: {
+            [self failureWithResponse:response];
+        }
+            break;
+        case YBRequestRedirectionStop:
+        default: break;
     }
     
     YBNETWORK_MAIN_QUEUE_ASYNC(^{
         [self.taskIDRecord removeObject:taskID];
-        [self clearRequestBlocks];
     })
 }
 
@@ -242,6 +258,7 @@ pthread_mutex_unlock(&self->_lock);
             if (self.successBlock) {
                 self.successBlock(response);
             }
+            [self clearRequestBlocks];
         }
     })
 }
@@ -262,18 +279,11 @@ pthread_mutex_unlock(&self->_lock);
         if (self.failureBlock) {
             self.failureBlock(response);
         }
+        [self clearRequestBlocks];
     })
 }
 
 #pragma mark - private
-
-- (void)clearRequestBlocks {
-    self.uploadProgress = nil;
-    self.downloadProgress = nil;
-    self.cacheBlock = nil;
-    self.successBlock = nil;
-    self.failureBlock = nil;
-}
 
 - (NSString *)requestIdentifier {
     NSString *identifier = [NSString stringWithFormat:@"%@-%@%@", [self requestMethodString], [self validRequestURLString], [self stringFromParameter:[self validRequestParameter]]];

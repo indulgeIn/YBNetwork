@@ -93,6 +93,16 @@ typedef NS_ENUM(NSInteger, YBNetworkRepeatStrategy) {
     YBNetworkRepeatStrategyCancelNewest
 };
 
+/// 网络请求回调重定向类型
+typedef NS_ENUM(NSInteger, YBRequestRedirection) {
+    /// 重定向为成功
+    YBRequestRedirectionSuccess,
+    /// 重定向为失败
+    YBRequestRedirectionFailure,
+    /// 停止后续操作（主要是停止回调）
+    YBRequestRedirectionStop
+};
+
 
 @class YBBaseRequest;
 @class YBNetworkResponse;

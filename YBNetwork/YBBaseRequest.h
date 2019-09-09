@@ -80,6 +80,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 请求标识，可以查看完整的请求路径和参数 */
 - (NSString *)requestIdentifier;
 
+/** 清空所有请求回调闭包 */
+- (void)clearRequestBlocks;
+
 #pragma - 网络请求公共配置 (以子类化方式实现: 针对不同的接口团队设计不同的公共配置)
 
 /**
@@ -116,8 +119,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 预处理响应数据 (重写分类方法)
 @interface YBBaseRequest (PreprocessResponse)
 
-/** 是否将响应成功转换为响应错误（在某些情况下服务器返回一些代表访问错误的状态码，就可以重写这个方法直接转换为错误响应） */
-- (BOOL)yb_preprocessShouldFailedWithResponse:(YBNetworkResponse *)response;
+/**
+ 网络请求回调重定向，将会再下面几个预处理方法之前调用。
+ 需要特别注意 YBRequestRedirectionStop 会停止后续操作，如果业务使用闭包回调，这个闭包不会被清空，可能会造成循环引用，所以这种场景务必保证回调被正确处理，一般有以下两种方式：
+ 1、Stop 过后执行特定逻辑，然后重新 start 发起网络请求，之前的回调闭包就能继续正常处理了。
+ 2、直接调用 clearRequestBlocks 清空回调闭包。
+ */
+- (YBRequestRedirection)yb_redirectionWithResponse:(YBNetworkResponse *)response;
 
 /** 预处理请求成功数据 (子线程执行, 若数据来自缓存在主线程执行) */
 - (void)yb_preprocessSuccessInChildThreadWithResponse:(YBNetworkResponse *)response;

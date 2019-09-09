@@ -11,6 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ 网络请求响应对象
+ 如果想拓展一些属性，使用 runtime 关联属性，然后重写预处理方法进行计算并赋值就行了。
+ */
 @interface YBNetworkResponse : NSObject
 
 /// 请求成功数据
