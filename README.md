@@ -5,12 +5,11 @@
 [![License](https://img.shields.io/github/license/indulgeIn/YBNetwork.svg)](https://github.com/indulgeIn/YBNetwork)&nbsp;
 
 基于 AFNetworking 二次封装，调用方便，设计简洁，易于拓展。
-(暂时没有支持 cocopods)
 
 设计原理博客：[谈谈 iOS 网络层设计](https://www.jianshu.com/p/fe0dd50d0af1)
 
 参考思路：[iOS应用架构谈 网络层设计方案](https://casatwy.com/iosying-yong-jia-gou-tan-wang-luo-ceng-she-ji-fang-an.html)
-参考源码：[YTKNetwork](https://github.com/yuantiku/YTKNetwork) [CTNetworking](https://github.com/casatwy/CTNetworking)
+<br>参考源码：[YTKNetwork](https://github.com/yuantiku/YTKNetwork) <br>[CTNetworking](https://github.com/casatwy/CTNetworking)
 
 
 ## 特性
