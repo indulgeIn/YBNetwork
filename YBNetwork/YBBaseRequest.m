@@ -205,20 +205,19 @@ pthread_mutex_unlock(&self->_lock);
     void(^process)(YBRequestRedirection) = ^(YBRequestRedirection redirection) {
         switch (redirection) {
             case YBRequestRedirectionSuccess: {
-                [self successWithResponse:response cacheKey:cacheKey fromCache:NO];
+                [self successWithResponse:response cacheKey:cacheKey fromCache:NO taskID:taskID];
             }
                 break;
             case YBRequestRedirectionFailure: {
-                [self failureWithResponse:response];
+                [self failureWithResponse:response taskID:taskID];
             }
                 break;
             case YBRequestRedirectionStop:
-            default: break;
+            default: {
+                YBN_IDECORD_LOCK([self.taskIDRecord removeObject:taskID];)
+            }
+                break;
         }
-        
-        YBNETWORK_MAIN_QUEUE_ASYNC(^{
-            [self.taskIDRecord removeObject:taskID];
-        })
     };
     
     if ([self respondsToSelector:@selector(yb_redirection:response:)]) {
@@ -229,7 +228,7 @@ pthread_mutex_unlock(&self->_lock);
     }
 }
 
-- (void)successWithResponse:(YBNetworkResponse *)response cacheKey:(NSString *)cacheKey fromCache:(BOOL)fromCache {
+- (void)successWithResponse:(YBNetworkResponse *)response cacheKey:(NSString *)cacheKey fromCache:(BOOL)fromCache taskID:(NSNumber *)taskID {
     
     BOOL shouldCache = !self.cacheHandler.shouldCacheBlock || self.cacheHandler.shouldCacheBlock(response);
     BOOL isSendFile = self.requestConstructingBody || self.downloadPath.length > 0;
@@ -262,10 +261,12 @@ pthread_mutex_unlock(&self->_lock);
             }
             [self clearRequestBlocks];
         }
+        
+        [self.taskIDRecord removeObject:taskID];
     })
 }
 
-- (void)failureWithResponse:(YBNetworkResponse *)response {
+- (void)failureWithResponse:(YBNetworkResponse *)response taskID:(NSNumber *)taskID {
     if ([self respondsToSelector:@selector(yb_preprocessFailureInChildThreadWithResponse:)]) {
         [self yb_preprocessFailureInChildThreadWithResponse:response];
     }
@@ -282,6 +283,8 @@ pthread_mutex_unlock(&self->_lock);
             self.failureBlock(response);
         }
         [self clearRequestBlocks];
+        
+        [self.taskIDRecord removeObject:taskID];
     })
 }
 
