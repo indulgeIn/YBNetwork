@@ -93,7 +93,7 @@ pthread_mutex_unlock(&self->_lock);
     [self.cacheHandler objectForKey:cacheKey withBlock:^(NSString * _Nonnull key, id<NSCoding>  _Nonnull object) {
         if (object) { //缓存命中
             YBNetworkResponse *response = [YBNetworkResponse responseWithSessionTask:nil responseObject:object error:nil];
-            [self successWithResponse:response cacheKey:cacheKey fromCache:YES];
+            [self successWithResponse:response cacheKey:cacheKey fromCache:YES taskID:nil];
         }
         
         BOOL needRequestNetwork = !object || self.cacheHandler.readMode == YBNetworkCacheReadModeAlsoNetwork;
@@ -262,7 +262,7 @@ pthread_mutex_unlock(&self->_lock);
             [self clearRequestBlocks];
         }
         
-        [self.taskIDRecord removeObject:taskID];
+        if (taskID) [self.taskIDRecord removeObject:taskID];
     })
 }
 
@@ -284,7 +284,7 @@ pthread_mutex_unlock(&self->_lock);
         }
         [self clearRequestBlocks];
         
-        [self.taskIDRecord removeObject:taskID];
+        if (taskID) [self.taskIDRecord removeObject:taskID];
     })
 }
 

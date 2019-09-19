@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "YBNetwork"
-  s.version      = "1.0.3"
+  s.version      = "1.0.4"
   s.summary      = "基于 AFNetworking 网络中间层，注重性能，设计简洁，易于拓展"
   s.description  = <<-DESC
   					基于 AFNetworking 网络中间层，注重性能，设计简洁，易于拓展。
