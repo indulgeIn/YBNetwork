@@ -20,12 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 请求成功数据
 @property (nonatomic, strong, nullable) id responseObject;
 
-/// 请求失败类型 (使用该属性做业务处理足够)
-@property (nonatomic, assign) YBResponseErrorType errorType;
-
 /// 请求失败 NSError
 @property (nonatomic, strong, readonly, nullable) NSError *error;
-
 
 /// 请求任务
 @property (nonatomic, strong, readonly, nullable) NSURLSessionTask *sessionTask;
@@ -33,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// sessionTask.response
 @property (nonatomic, strong, readonly, nullable) NSHTTPURLResponse *URLResponse;
 
-
+/// 便利构造
 + (instancetype)responseWithSessionTask:(nullable NSURLSessionTask *)sessionTask
                          responseObject:(nullable id)responseObject
                                   error:(nullable NSError *)error;

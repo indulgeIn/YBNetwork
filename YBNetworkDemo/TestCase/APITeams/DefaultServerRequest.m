@@ -16,12 +16,6 @@
     self = [super init];
     if (self) {
         self.baseURI = @"http://japi.juhe.cn";
-        self.requestSerializer = [AFHTTPRequestSerializer serializer];
-        self.requestSerializer.timeoutInterval = 25;
-        self.responseSerializer = [AFJSONResponseSerializer serializer];
-        NSMutableSet *types = self.responseSerializer.acceptableContentTypes.mutableCopy;
-        [types addObject:@"text/html"];
-        self.responseSerializer.acceptableContentTypes = types;
         
         [self.cacheHandler setShouldCacheBlock:^BOOL(YBNetworkResponse * _Nonnull response) {
             // 检查数据正确性，保证缓存有用的内容
@@ -33,14 +27,51 @@
 
 #pragma mark - override
 
+- (AFHTTPRequestSerializer *)requestSerializer {
+    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer new];
+    serializer.timeoutInterval = 25;
+    return serializer;
+}
+
+- (AFHTTPResponseSerializer *)responseSerializer {
+    AFHTTPResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
+    NSMutableSet *types = [NSMutableSet set];
+    [types addObject:@"text/html"];
+    [types addObject:@"text/plain"];
+    [types addObject:@"application/json"];
+    [types addObject:@"text/json"];
+    [types addObject:@"text/javascript"];
+    serializer.acceptableContentTypes = types;
+    return serializer;
+}
+
 - (void)start {
-    NSLog(@"%@", self.requestIdentifier);
+    NSLog(@"发起请求：%@", self.requestIdentifier);
     [super start];
 }
 
 - (void)yb_redirection:(void (^)(YBRequestRedirection))redirection response:(YBNetworkResponse *)response {
+    
+    // 处理错误的状态码
+    if (response.error) {
+        YBResponseErrorType errorType;
+        switch (response.error.code) {
+            case NSURLErrorTimedOut:
+                errorType = YBResponseErrorTypeTimedOut;
+                break;
+            case NSURLErrorCancelled:
+                errorType = YBResponseErrorTypeCancelled;
+                break;
+            default:
+                errorType = YBResponseErrorTypeNoNetwork;
+                break;
+        }
+        response.errorType = errorType;
+    }
+    
+    // 自定义重定向
     NSDictionary *responseDic = response.responseObject;
-    if ([responseDic isKindOfClass:NSDictionary.self] && [[NSString stringWithFormat:@"%@", responseDic[@"error_code"]] isEqualToString:@"2"]) {
+    if ([[NSString stringWithFormat:@"%@", responseDic[@"error_code"]] isEqualToString:@"2"]) {
         redirection(YBRequestRedirectionFailure);
         response.errorType = YBResponseErrorTypeServerError;
         return;

@@ -186,7 +186,8 @@ pthread_mutex_unlock(&self->_lock);
         manager = defaultManager;
     }
     manager.completionQueue = dispatch_queue_create("com.ybnetwork.completionqueue", DISPATCH_QUEUE_CONCURRENT);
-    if (request.responseSerializer) manager.responseSerializer = request.responseSerializer;
+    AFHTTPResponseSerializer *customSerializer = request.responseSerializer;
+    if (customSerializer) manager.responseSerializer = customSerializer;
     return manager;
 }
 

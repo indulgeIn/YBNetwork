@@ -38,20 +38,6 @@ typedef NS_ENUM(NSInteger, YBRequestMethod) {
     YBRequestMethodPATCH
 };
 
-/// 网络响应错误类型
-typedef NS_ENUM(NSInteger, YBResponseErrorType) {
-    /// 未知
-    YBResponseErrorTypeUnknown,
-    /// 超时
-    YBResponseErrorTypeTimedOut,
-    /// 取消
-    YBResponseErrorTypeCancelled,
-    /// 无网络
-    YBResponseErrorTypeNoNetwork,
-    /// 服务器错误
-    YBResponseErrorTypeServerError
-};
-
 /// 缓存存储模式
 typedef NS_OPTIONS(NSUInteger, YBNetworkCacheWriteMode) {
     /// 无缓存

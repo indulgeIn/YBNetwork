@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2358A60C233DBB6D00623E4E /* YBNetworkResponse+YBCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 2358A60B233DBB6D00623E4E /* YBNetworkResponse+YBCustom.m */; };
 		23730AE9227FDFCA0033BB11 /* DefaultServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 23730AE5227FDFCA0033BB11 /* DefaultServerRequest.m */; };
 		23730AEA227FDFCA0033BB11 /* OtherServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 23730AE8227FDFCA0033BB11 /* OtherServerRequest.m */; };
 		23730AED227FE0400033BB11 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23730AEB227FE0400033BB11 /* TestViewController.m */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2358A60A233DBB6D00623E4E /* YBNetworkResponse+YBCustom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YBNetworkResponse+YBCustom.h"; sourceTree = "<group>"; };
+		2358A60B233DBB6D00623E4E /* YBNetworkResponse+YBCustom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YBNetworkResponse+YBCustom.m"; sourceTree = "<group>"; };
 		23730AE5227FDFCA0033BB11 /* DefaultServerRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultServerRequest.m; sourceTree = "<group>"; };
 		23730AE6227FDFCA0033BB11 /* DefaultServerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultServerRequest.h; sourceTree = "<group>"; };
 		23730AE7227FDFCA0033BB11 /* OtherServerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherServerRequest.h; sourceTree = "<group>"; };
@@ -74,6 +77,15 @@
 				56A893DB8000A939C5DA5801 /* libPods-YBNetworkDemo.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2358A606233DBB0900623E4E /* 为响应对象拓展属性 */ = {
+			isa = PBXGroup;
+			children = (
+				2358A60A233DBB6D00623E4E /* YBNetworkResponse+YBCustom.h */,
+				2358A60B233DBB6D00623E4E /* YBNetworkResponse+YBCustom.m */,
+			);
+			path = "为响应对象拓展属性";
 			sourceTree = "<group>";
 		};
 		23C918F7225C4039006D7572 = {
@@ -159,6 +171,7 @@
 			children = (
 				23730AEC227FE0400033BB11 /* TestViewController.h */,
 				23730AEB227FE0400033BB11 /* TestViewController.m */,
+				2358A606233DBB0900623E4E /* 为响应对象拓展属性 */,
 				23C91934225C4BCD006D7572 /* APITeams */,
 			);
 			path = TestCase;
@@ -278,6 +291,7 @@
 			files = (
 				23C9192A225C4204006D7572 /* YBNetworkManager.m in Sources */,
 				23C91908225C4039006D7572 /* ViewController.m in Sources */,
+				2358A60C233DBB6D00623E4E /* YBNetworkResponse+YBCustom.m in Sources */,
 				23C91913225C403C006D7572 /* main.m in Sources */,
 				23730AEA227FDFCA0033BB11 /* OtherServerRequest.m in Sources */,
 				23730AED227FE0400033BB11 /* TestViewController.m in Sources */,

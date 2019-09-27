@@ -7,6 +7,7 @@
 //
 
 #import "YBBaseRequest.h"
+#import "YBNetworkResponse+YBCustom.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

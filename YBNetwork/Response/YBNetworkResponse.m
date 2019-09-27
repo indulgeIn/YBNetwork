@@ -16,22 +16,7 @@
     YBNetworkResponse *response = [YBNetworkResponse new];
     response->_sessionTask = sessionTask;
     response->_responseObject = responseObject;
-    if (error) {
-        response->_error = error;
-        YBResponseErrorType errorType;
-        switch (error.code) {
-            case NSURLErrorTimedOut:
-                errorType = YBResponseErrorTypeTimedOut;
-                break;
-            case NSURLErrorCancelled:
-                errorType = YBResponseErrorTypeCancelled;
-                break;
-            default:
-                errorType = YBResponseErrorTypeNoNetwork;
-                break;
-        }
-        response->_errorType = errorType;
-    }
+    response->_error = error;
     return response;
 }
 
