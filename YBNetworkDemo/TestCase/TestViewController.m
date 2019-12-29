@@ -54,7 +54,7 @@
     
     DefaultServerRequest *request = [DefaultServerRequest new];
     request.cacheHandler.writeMode = YBNetworkCacheWriteModeMemoryAndDisk;
-    request.cacheHandler.readMode = YBNetworkCacheReadModeAlsoNetwork;
+    request.cacheHandler.readMode = YBNetworkCacheReadModeCancelNetwork;
     request.requestMethod = YBRequestMethodGET;
     request.requestURI = @"charconvert/change.from";
     request.requestParameter = @{@"key":@"0e27c575047e83b407ff9e517cde9c76", @"type":@"2", @"text":@"呵呵呵呵"};
